@@ -20,7 +20,7 @@ fn program_prover(c: &mut Criterion) {
     // 2^18 = 1<<16
     // 2^20 = 1<<18
 
-    let size = 1 << 16;
+    let size = 1 << 18;
 
     group.bench_function("program_prover", |bench| {
         bench.iter(|| {
