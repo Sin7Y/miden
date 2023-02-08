@@ -45,7 +45,7 @@ std = ["air/std", "assembly/std", "log/std", "processor/std", "prover/concurrent
 [dependencies]
 air = { package = "miden-air", path = "../air", version = "0.3", default-features = false }
 assembly = { package = "miden-assembly", path = "../assembly", version = "0.3", default-features = false }
-crypto = { package = "winter-crypto", version = "0.4.2", default-features = false, optional = true }
+crypto = { package = "winter-crypto", path = "../../winterfell/crypto", default-features = false, optional = true }
 env_logger = { version = "0.9", default-features = false, optional = true }
 hex = { version = "0.4", optional = true }
 log = { version = "0.4", default-features = false }
@@ -59,15 +59,15 @@ stdlib = { package = "miden-stdlib", path = "../stdlib", version = "0.2", defaul
 structopt = { version = "0.3", default-features = false, optional = true }
 verifier = { package = "miden-verifier", path = "../verifier", version = "0.3", default-features = false }
 vm-core = { package = "miden-core", path = "../core", version = "0.3", default-features = false }
-winter-utils = { package = "winter-utils", version = "0.4.2", optional = true }
+winter-utils = { package = "winter-utils", path = "../../winterfell/utils/core", optional = true }
 
 [dev-dependencies]
 blake3 = "1.3"
 criterion = "0.4"
-math = { package = "winter-math", version = "0.4.2", default-features = false }
+math = { package = "winter-math", path = "../../winterfell/math", default-features = false }
 num-bigint = "0.4"
 proptest = "1.0.0"
-rand-utils = { package = "winter-rand-utils", version = "0.4.2" }
+rand-utils = { package = "winter-rand-utils", path = "../../winterfell/utils/rand" }
 sha2 = "0.10"
 sha3 = "0.10"
 test-case = "2.2.2"
