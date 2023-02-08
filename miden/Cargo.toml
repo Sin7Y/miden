@@ -32,11 +32,15 @@ harness = false
 name = "program_execution"
 harness = false
 
+[[bench]]
+name = "program_prover"
+harness = false
+
 [features]
 concurrent = ["prover/concurrent", "std"]
 default = ["std"]
 executable = ["crypto", "env_logger", "hex/std", "std", "serde/std", "serde_derive", "serde_json/std", "structopt", "winter-utils", "rustyline"]
-std = ["air/std", "assembly/std", "log/std", "processor/std", "prover/std", "verifier/std", "vm-core/std"]
+std = ["air/std", "assembly/std", "log/std", "processor/std", "prover/concurrent", "verifier/std", "vm-core/std"]
 
 [dependencies]
 air = { package = "miden-air", path = "../air", version = "0.3", default-features = false }
