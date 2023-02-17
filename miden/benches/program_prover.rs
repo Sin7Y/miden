@@ -42,11 +42,11 @@ fn program_prover(c: &mut Criterion) {
         
             let (mut outputs, proof) = miden::prove(&program, &inputs, &ProofOptions::default()).unwrap();
 
-            if miden::verify(program.hash(), &vec![0, 1], &outputs, proof).is_ok() {
-                println!("true");
-            } else {
-                println!("wrong");
-            }
+            // if miden::verify(program.hash(), &vec![0, 1], &outputs, proof).is_ok() {
+            //     println!("true");
+            // } else {
+            //     println!("wrong");
+            // }
         });
     });
 
