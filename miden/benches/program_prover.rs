@@ -13,30 +13,30 @@ fn program_prover(c: &mut Criterion) {
     //         .init();
 
     let mut group = c.benchmark_group("program_prover");
-    group.measurement_time(Duration::from_secs(10));
-    group.sample_size(10);
 
     // trace rows:
     // 2^18 = 1<<16
     // 2^20 = 1<<18
 
-    let size = 16;
+    let size = 1<<16;
+
+    let program = format!(
+        "begin 
+            repeat.{}
+                swap dup.1 add
+            end
+        end",
+        size
+    );
+    println!("programlalala");
+
+    let program = Assembler::new()
+        .with_module_provider(StdLibrary::default())
+        .compile(&program)
+        .unwrap();
 
     group.bench_function("program_prover", |bench| {
         bench.iter(|| {
-            let program = format!(
-                "begin 
-                    repeat.{}
-                        swap dup.1 add
-                    end
-                end",
-                size
-            );
-        
-            let program = Assembler::new()
-                .with_module_provider(StdLibrary::default())
-                .compile(&program)
-                .unwrap();
             
             let inputs = ProgramInputs::from_stack_inputs(&[0, 1]).unwrap();
         
@@ -53,5 +53,9 @@ fn program_prover(c: &mut Criterion) {
     group.finish();
 }
 
-criterion_group!(benches, program_prover);
+criterion_group![
+    name = benches;
+    config = Criterion::default().sample_size(10);
+    targets = program_prover
+];
 criterion_main!(benches);
