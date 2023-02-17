@@ -20,7 +20,7 @@ fn program_prover(c: &mut Criterion) {
     // 2^18 = 1<<16
     // 2^20 = 1<<18
 
-    let size = 1 << 18;
+    let size = 16;
 
     group.bench_function("program_prover", |bench| {
         bench.iter(|| {
@@ -41,6 +41,12 @@ fn program_prover(c: &mut Criterion) {
             let inputs = ProgramInputs::from_stack_inputs(&[0, 1]).unwrap();
         
             let (mut outputs, proof) = miden::prove(&program, &inputs, &ProofOptions::default()).unwrap();
+
+            if miden::verify(program.hash(), &vec![0, 1], &outputs, proof).is_ok() {
+                println!("true");
+            } else {
+                println!("wrong");
+            }
         });
     });
 
